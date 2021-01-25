@@ -22,8 +22,8 @@ def get_todo(id, dynamodb=None):
     else:
         try:
             translate = boto3.client(service_name='translate', region_name='region', use_ssl=True)
-            resultTranslate = translate.translate_text(Text= response['text'], SourceLanguageCode="en", TargetLanguageCode="de")
-            response["text"] = resultTranslate['TranslatedText']
+            resultTranslate = translate.translate_text(Text= response['Item']['text'], SourceLanguageCode="en", TargetLanguageCode="de")
+            response['Item']['text'] = resultTranslate['TranslatedText']
         except ClientError as e2:
             print(e.response['Error']['Message'])
         else:

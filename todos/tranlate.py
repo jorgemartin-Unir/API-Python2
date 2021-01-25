@@ -17,8 +17,8 @@ def translate(event, context):
     )
 
     translate = boto3.client(service_name='translate', region_name='region', use_ssl=True)
-    resultTranslate = translate.translate_text(Text= result['text'], SourceLanguageCode="en", TargetLanguageCode="de")
-    result["text"] = resultTranslate['TranslatedText']
+    resultTranslate = translate.translate_text(Text= result['Item']['text'], SourceLanguageCode="en", TargetLanguageCode=event['pathParameters']['language'])
+    result['Item']['text'] = resultTranslate['TranslatedText']
     # create a response
     response = {
         "statusCode": 200,
