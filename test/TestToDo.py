@@ -4,6 +4,8 @@ import unittest
 import boto3
 from moto import mock_dynamodb2
 import sys
+import xmlrunner
+    
 sys.path.insert(1, '../todos/')
 
 
@@ -218,4 +220,5 @@ class TestDatabaseFunctions(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))
